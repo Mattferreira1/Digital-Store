@@ -7,11 +7,11 @@ const Footer = () => {
   const footerLiTextStyle = "font-inter font-normal text-base text-white";
   return (
     <footer className="bg-dark-gray">
-      <div className=" px-5 py-12 grid grid-cols-2 gap-10 lg:grid-cols-4">
-        <div className="col-span-2 w-3/4 space-y-5 lg:col-span-1">
+      <div className=" px-5 py-12 grid grid-cols-2 gap-10 lg:grid-cols-4 lg:px-12 lg:py-12">
+        <div className="col-span-2 w-3/4 space-y-5 lg:col-span-1 lg:w-full">
           <Logo.Root className="flex gap-2 items-center">
             <Logo.Icon className="text-white w-6 h-6 lg:w-7 lg:h-7" />
-            <Logo.Text className="text-xl text-white font-semibold font-inter block lg:text-4xl" />
+            <Logo.Text className="text-xl text-white font-semibold font-inter block xl:text-4xl" />
           </Logo.Root>
           <p className="font-inter font-medium text-sm text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -30,7 +30,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="col-span-2 w-4/5 flex">
+        <div className="col-span-2 w-4/5 flex lg:justify-self-center">
           <section className="w-1/2 space-y-4">
             <h3 className="font-inter font-semibold text-lg text-white">
               Informação
@@ -72,7 +72,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <hr className="w-9/12 h-px bg-white justify-self-center" />
+      <hr className="w-9/12 h-px bg-white justify-self-center lg:w-11/12" />
       <p className="py-6 bg-dark text-center font-inter font-normal text-sm text-white">
         @ 2022 Digital College
       </p>
