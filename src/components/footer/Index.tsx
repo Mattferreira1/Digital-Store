@@ -7,7 +7,7 @@ const Footer = () => {
   const footerLiTextStyle = "font-inter font-normal text-base text-white";
   return (
     <footer className="bg-dark-gray">
-      <div className=" px-5 py-12 grid grid-cols-2 gap-10">
+      <div className=" px-5 py-12 grid grid-cols-2 gap-10 lg:grid-cols-4">
         <div className="col-span-2 w-3/4 space-y-5 lg:col-span-1">
           <Logo.Root className="flex gap-2 items-center">
             <Logo.Icon className="text-white w-6 h-6 lg:w-7 lg:h-7" />
