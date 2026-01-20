@@ -8,6 +8,8 @@
   --color-error: #ee4266;
   --color-success: #52ca76;
   --color-warning: #f6aa1c;
+  --color-lightBlue: #d8e3f2;
+  --color-lightYellow: #e7ff86;
 
   --color-dark-gray: #1f1f1f;
   --color-dark-gray-2: #474747;
@@ -16,9 +18,12 @@
   --color-light-gray-2: #cccccc;
   --color-light-gray-3: #f5f5f5;
   --color-white: #ffffff;
+  --color-linearGradient1: #b5b6f2;
+  --color-linearGradient2: #efefff;
 
   --font-inter: "inter", sans-serif;
+  --breakpoint-xs: 30rem;
 }
-/* * {
+* {
   border: 1px solid red;
-} */
+}
