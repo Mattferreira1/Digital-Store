@@ -23,8 +23,8 @@ const page = () => {
   };
   // (" relative bg-linear-to-b from-linearGradient1 from-30% to-linearGradient2 w-full h-[90dvh] md:py-20 flex items-center justify-center lg:justify-start lg:p-16 lg:items-start  ");
   return (
-    <main className="w-full h-[85dvh] bg-linear-to-b from-linearGradient1 from-30% to-linearGradient2 grid grid-col-1 px-5 items-center justify-center md:h-[90dvh] md:px-14 lg:grid-cols-2 lg:pt-12 lg:items-start">
-      <section className="w-95 h-110 bg-white flex flex-col px-8 justify-center space-y-2 lg:w-9/10">
+    <main className="w-full h-dvh bg-linear-to-b from-linearGradient1 from-30% to-linearGradient2 grid grid-col-1 px-5 items-center justify-center md:h-[90dvh] md:px-14 lg:grid-cols-2 lg:pt-12 lg:items-start">
+      <section className="w-95 h-110 bg-white flex flex-col px-8 justify-center space-y-2 lg:w-8/10">
         <div>
           <h1 className="text-2xl font-inter font-bold leading-10 text-dark-gray text-center tracking-wider lg:text-start lg:text-3xl">
             Crie sua conta
@@ -82,8 +82,8 @@ const page = () => {
           </div>
         </div>
       </section>
-      <section className="hidden relative w-full h-full lg:block">
-        <Image
+      <section className="hidden relative w-full h-125 lg:block">
+        {/* <Image
           src={shoeFrontSide}
           alt=""
           className="hidden absolute max-w-70 max-h-110 translate-x-1/2 -left-40 -top-10 lg:inline"
@@ -93,8 +93,20 @@ const page = () => {
           src={shoeBackSide}
           alt=""
           className="hidden absolute max-w-80 max-h-110 translate-x-1/2 right-35 -bottom-5 lg:inline"
+        /> */}
+        <Image
+          src={shoeFrontSide}
+          alt=""
+          className="hidden absolute  md:max-w-9/12 md:max-h-10/10 left-1/2 -translate-x-9/10 -top-10 lg:block xl:max-w-9/10 xl:max-h-250 xl:-translate-x-full"
+        />
+
+        <Image
+          src={shoeBackSide}
+          alt=""
+          className="hidden absolute md:max-w-8/10 md:max-h-10/10 right-1/2 translate-x-9/12 -bottom-30 lg:block xl:max-w-full xl:max-h-250 xl:-bottom-50 xl:translate-x-9/12"
         />
       </section>
+
       {/* <section className="w-full h-120 rounded-sm justify-self-center bg-white p-8 lg:w-9/10">
         <form action="" className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <FormInput.Root>
