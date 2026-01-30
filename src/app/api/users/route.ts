@@ -1,7 +1,10 @@
+import userController from "@/modules/users/userController";
 import { NextResponse } from "next/server";
-import { prisma } from "../../../../prisma/prisma";
 
-export async function GET() {
-  const users = await prisma.user.findMany();
+const UserController = new userController();
+export async function GET(request: Request, res: NextResponse) {
+  const users = await UserController.getUsers();
+  console.log(users);
+
   return NextResponse.json(users);
 }
