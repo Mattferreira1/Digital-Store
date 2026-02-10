@@ -1,9 +1,8 @@
 "use client";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FieldPath, SubmitHandler, useForm } from "react-hook-form";
 import { FormInput } from "@/components/formInput/Index";
-import { User } from "@/modules/types/types";
-
-type RegisterInputs = User;
+import { APIResponse, RegisterInputs, response } from "@/modules/types/types";
+import { api } from "@/modules/http";
 
 const page = () => {
   const {
@@ -11,7 +10,10 @@ const page = () => {
     handleSubmit,
     formState: { errors },
     setValue,
+    watch,
   } = useForm<RegisterInputs>();
+
+  const passwordValue = watch("password");
 
   const handleChangeCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const cep = e.target.value.replace(/\D/g, "");
@@ -25,14 +27,28 @@ const page = () => {
           setValue("address", data.logradouro || "");
           setValue("neighborhood", data.bairro || "");
           setValue("city", data.localidade || "");
+          setValue("state", data.estado || "");
+          setValue("complement", data.complemento || "");
         }
       } catch (error) {
         console.error("Erro ao buscar CEP:", error);
       }
     }
   };
-  const onSubmit: SubmitHandler<RegisterInputs> = (data) => {
-    console.log(data);
+
+  const onSubmit: SubmitHandler<RegisterInputs> = async (data) => {
+    const { confirmPassword, ...userData } = data;
+
+    try {
+      const response: response = await api.user.post("/", userData);
+      if (response.data.error) {
+        alert(response.data.message);
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <main className="w-full min-h-screen flex items-center px-6 py-10 bg-light-gray-3 lg:justify-center lg:py-20">
@@ -94,6 +110,49 @@ const page = () => {
               />
             </FormInput.Root>
             {errors.email && <span>Esse campo é obrigatório.</span>}
+            <div>
+              <div className="flex gap-2">
+                <FormInput.Root>
+                  <FormInput.Label
+                    className="text-xs font-inter font-bold text-dark-gray-2"
+                    htmlFor="password"
+                  >
+                    Senha *
+                  </FormInput.Label>
+                  <FormInput.Control
+                    id="password"
+                    type="password"
+                    className="w-full px-3 py-5 rounded-lg text-base font-inter text-dark-gray-3 tracking-wider bg-light-gray-2"
+                    placeholder="Crie uma senha"
+                    {...register("password", { required: true })}
+                  />
+                  {errors.password && <span>Esse campo é obrigatório.</span>}
+                </FormInput.Root>
+                <FormInput.Root>
+                  <FormInput.Label
+                    className="text-xs font-inter font-bold text-dark-gray-2 w-full"
+                    htmlFor="confirmPassword"
+                  >
+                    Confirmar Senha *
+                  </FormInput.Label>
+                  <FormInput.Control
+                    id="confirmPassword"
+                    type="password"
+                    className="w-full px-3 py-5 rounded-lg text-base font-inter text-dark-gray-3 tracking-wider bg-light-gray-2"
+                    placeholder="Confirme sua senha"
+                    {...register("confirmPassword", {
+                      validate: (value) =>
+                        value === passwordValue || "As senhas não coincidem.",
+                    })}
+                  />
+                </FormInput.Root>
+              </div>
+              {errors.confirmPassword && (
+                <span>
+                  {errors.confirmPassword.message || "As senhas não coincidem."}
+                </span>
+              )}
+            </div>
             <FormInput.Root>
               <FormInput.Label
                 className="text-xs font-inter font-bold text-dark-gray-2"
@@ -135,6 +194,22 @@ const page = () => {
             <FormInput.Root>
               <FormInput.Label
                 className="text-xs font-inter font-bold text-dark-gray-2"
+                htmlFor="cpf"
+              >
+                Número *
+              </FormInput.Label>
+              <FormInput.Control
+                id="number"
+                type="text"
+                className="w-full px-3 py-5 rounded-lg text-base font-inter text-dark-gray-3 tracking-wider bg-light-gray-2"
+                placeholder="Insira o número"
+                {...register("number", { required: true })}
+              />
+            </FormInput.Root>
+            {errors.number && <span>Esse campo é obrigatório.</span>}
+            <FormInput.Root>
+              <FormInput.Label
+                className="text-xs font-inter font-bold text-dark-gray-2"
                 htmlFor="neighborhood"
               >
                 Bairro *
@@ -164,6 +239,22 @@ const page = () => {
               />
             </FormInput.Root>
             {errors.city && <span>Esse campo é obrigatório.</span>}
+
+            <FormInput.Root>
+              <FormInput.Label
+                className="text-xs font-inter font-bold text-dark-gray-2"
+                htmlFor="state"
+              >
+                Estado
+              </FormInput.Label>
+              <FormInput.Control
+                id="state"
+                type="text"
+                className="w-full px-3 py-5 rounded-lg text-base font-inter text-dark-gray-3 tracking-wider bg-light-gray-2"
+                placeholder="Insira o estado"
+                {...register("state")}
+              />
+            </FormInput.Root>
             <FormInput.Root>
               <FormInput.Label
                 className="text-xs font-inter font-bold text-dark-gray-2"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 import Header from "@/components/header/Index";
 import Footer from "@/components/footer/Index";
+import UserContextProvider from "@/context/UserContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased w-full`}>
-        <Header />
-        {children}
-        <Footer />
+        <UserContextProvider>
+          <Header />
+          {children}
+          <Footer />
+        </UserContextProvider>
       </body>
     </html>
   );

@@ -1,11 +1,17 @@
+"use client";
 import "@/app/globals.css";
 import starWarsShirt from "@/assets/images/ed5ce1c7142e724e412fea4471b52bbaf0ee4a67.png";
 import shoe from "@/assets/images/a38ed2a090dc1fa5c7c729e7018c5282d02ddbca.png";
 import headphone from "@/assets/images/fcafd5f49a48e0e33e95f4dd626d8c00b8d4d927.png";
 import { CollectionGroup } from "@/components/collectionGroup";
 import Image from "next/image";
+import { useContext } from "react";
+import { userContext } from "@/context/UserContext";
 
 const page = () => {
+  const User = useContext(userContext);
+  console.log(User?.currentUser);
+
   return (
     <main className="bg-white w-full ">
       <section>Carousel</section>
